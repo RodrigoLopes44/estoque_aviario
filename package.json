@@ -1,0 +1,19 @@
+{
+  "name": "sistema_estoque",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.7",
+    "electron": "^37.2.0",
+    "pg": "^8.16.3"
+  }
+}
