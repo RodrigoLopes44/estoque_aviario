@@ -123,8 +123,8 @@ app.on('window-all-closed', () => {
     }
 });
 
-ipcMain.on('focus-window', () => {
-    if (win) {
-        win.webContents.focus();
-    }
-});
+// ipcMain.on('focus-window', () => {
+//     if (win) {
+//         win.webContents.focus();
+//     }
+// });

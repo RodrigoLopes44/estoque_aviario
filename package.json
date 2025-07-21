@@ -1,10 +1,11 @@
 {
   "name": "sistema_estoque",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "Sistema de controle de estoque para aviário.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron . --no-sandbox",
+    "package": "electron-builder"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,23 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
-    "electron": "^37.2.0",
     "pg": "^8.16.3"
-  }
+  },
+  "devDependencies": {
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.seroaves.estoque",
+    "productName": "Controle de Estoque Seroaves",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "renderer.js"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  }  
 }
