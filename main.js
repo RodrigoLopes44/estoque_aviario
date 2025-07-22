@@ -24,6 +24,7 @@ const testConnection = async () => {
 testConnection();
 // Fim do bloco de conexao //
 
+// Bloco de Criacao da Janela da aplicacao
 const createWindow = () => {
     win = new BrowserWindow({
         width: 800,
@@ -36,7 +37,7 @@ const createWindow = () => {
     });
 
     win.loadFile('index.html');
-    win.webContents.openDevTools(); // para debugar agora, apagar depois
+    mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
@@ -44,6 +45,7 @@ app.whenReady().then(() => {
 
     const { session } = require('electron');
 
+    // reforço de segurança para o electron
     session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
         callback({
             responseHeaders: {
@@ -95,13 +97,13 @@ ipcMain.handle('get-products', async () => { // novamente funcao assincrona para
 });
 
 ipcMain.handle('delete-products', async (event, id) => {
-  try {
-    await pool.query('DELETE FROM produtos WHERE id = $1', [id]);
-    return { success: true };
-  } catch (err) {
-    console.error('Erro ao deletar produto:', err);
-    return { success: false, message: err.message };
-  }
+    try {
+        await pool.query('DELETE FROM produtos WHERE id = $1', [id]);
+        return { success: true };
+    } catch (err) {
+        console.error('Erro ao deletar produto:', err);
+        return { success: false, message: err.message };
+    }
 });
 
 
@@ -122,9 +124,3 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
-
-// ipcMain.on('focus-window', () => {
-//     if (win) {
-//         win.webContents.focus();
-//     }
-// });
